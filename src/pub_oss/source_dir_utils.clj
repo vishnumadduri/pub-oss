@@ -30,16 +30,21 @@
   (let [directories (filter #(.isDirectory %) (.listFiles dir))]
     (map #(let [full-dir-name (str %)
                 content-dir-name (last (first (re-seq #"^(.+)/([^/]+)$" full-dir-name)))
-                package-name (first (re-seq #"^\w+" content-dir-name))
+                package-name (first (re-seq #"^\w[A-Za-z-_0-9]+[A-Za-z][^-_.]*" content-dir-name))
                 version (first (first (re-seq #"\d+(\.\d+)+" content-dir-name)))]
             {:source-dir %
              :package-name package-name
              :licence-concluded (last (first (re-seq #"^(.+)/([^/]+)$" (str dir))))
              :version-info version
-             ;:creation-date (str (new java.util.Date))
-             :creation-date "2014-03-20"
+             :creation-date (str (new java.util.Date))
              })
          directories)))
+
+
+(comment "regular expression examples for extracting package name"
+         (re-seq #"^\w[A-Za-z-_0-9]+[A-Za-z][^-_.]*" "abc-1.0.1.tar.gz")
+         (re-seq #"^\w[A-Za-z-_0-9]+[A-Za-z][^-_.]*" "abc-def-1.0.1.tar.gz")
+         (re-seq #"^\w[A-Za-z-_0-9]+[A-Za-z][^-_.]*" "abc2-def22-1.0.1.tar.gz"))
 
 
 

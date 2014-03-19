@@ -21,16 +21,13 @@
 
 (defn- create-target-directories
   "helper function to initially create directory structure"
-  [target-root-dir-name spdx-sub-dir-name target-source-sub-dir-name]
+  [target-root-dir-name spdx-sub-dir-name]
   (if-not (.mkdir (java.io.File. target-root-dir-name))
     (println "target directory not empty error!")
-    (let [spdx-dir-name (str target-root-dir-name "/" spdx-sub-dir-name)
-          target-dir-name (str target-root-dir-name "/" target-source-sub-dir-name)]
+    (let [spdx-dir-name (str target-root-dir-name "/" spdx-sub-dir-name)]
       (if-not (.mkdir (java.io.File. spdx-dir-name))
         (println (str "could not create directory " spdx-dir-name " error!"))
-        (if-not (.mkdir (java.io.File. target-dir-name))
-          (println (str "could not create directory " target-dir-name " error!"))
-          true)))))
+        true))))
 
 
 (defn mainloop
@@ -40,28 +37,14 @@
   [oe-main-directory-name  oss-main-directory-name  target-directory-name]
   (let [packages (get-all-os-packages oe-main-directory-name oss-main-directory-name)
         spdx-sub-dir-name "spdx"
-        target-source-sub-dir-name "sources"
-        spx-full-qual-dir-name (str target-directory-name "/" spdx-sub-dir-name)
-        target-source-full-qual-dir-name (str target-directory-name "/" target-source-sub-dir-name)]
-    (when (create-target-directories
-           target-directory-name spdx-sub-dir-name target-source-sub-dir-name)
+        spx-full-qual-dir-name (str target-directory-name "/" spdx-sub-dir-name)]
+    (when (create-target-directories target-directory-name spdx-sub-dir-name)
       (doseq [package packages]
         (let [package-name (:package-name package)
-              spdx-full-qual-file-name (str spx-full-qual-dir-name "/" package-name ".spdx")
-              sources (read-all-files-within (:source-dir package))
-              sources-meta (extract-source-dir-meta-data sources)
-              package (merge package sources-meta)
-              spdx-content (apply-with-keywords create-spdx package)]
-          (if sources-meta
-            (let [package-dir-name (str target-source-full-qual-dir-name "/" package-name)]
-              (println "writing package data for " package-name)
-              (def dir package-dir-name)
-              (if (.mkdir (java.io.File. package-dir-name))
-                (do
-                  (dorun (write-all-files-within sources package-dir-name))
-                  (write-xml spdx-full-qual-file-name spdx-content))
-                (println "could not write package data for package " package-name " error!")))
-            (println "package data " package-name " is malformed error!")))))))
+              spdx-content (apply-with-keywords create-spdx package)
+              spdx-full-qual-file-name (str spx-full-qual-dir-name "/" package-name ".spdx")]
+          (println "writing package data for " package-name)
+          (write-xml spdx-full-qual-file-name spdx-content))))))
 
 
 (comment "usage"

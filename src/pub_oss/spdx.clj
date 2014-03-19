@@ -18,13 +18,13 @@
              package-file-name
              package-archive-file-name
              download-location
-             package-virification-code
+             package-verification-code
              licence-concluded
              copyright-text
              summary
              package-checksum-value
              license-comments
-             patch-patch-file-name
+             patch-file-name
              patch-file-checksum-value
              ] :as args}]
   (element :rdf:RDF
@@ -48,7 +48,7 @@
                                       (element :downloadLocation {} download-location)
                                       (element :packageVerificationCode {}
                                                (element :PackageVerificationCode {}
-                                                        (element :packageVerificationCodeValue {} package-virification-code)))
+                                                        (element :packageVerificationCodeValue {} package-verification-code)))
                                       (element :licenseConcluded {:rdf:resource licence-concluded})
                                       (element :licenseInfoFromFiles {:rdf:resource "http://spdx.org/rdf/terms#noassertion"})
                                       (element :licenseDeclared {:rdf:resource "http://spdx.org/rdf/terms#noassertion"})
@@ -67,9 +67,9 @@
                                       (element :licenseInfoInFile {:rdf:resource "http://spdx.org/rdf/terms#noassertion"})
                                       (element :licenseComments {} license-comments)
                                       (element :copyrightText {:rdf:resource "http://spdx.org/rdf/terms#noassertion"}))
-                             (when patch-patch-file-name
+                             (when patch-file-name
                                (element :File {:rdfNodeId "PATCHFILE"}
-                                        (element :fileName {} patch-patch-file-name)
+                                        (element :fileName {} patch-file-name)
                                         (element :fileType {} "SOURCE")
                                         (element :checksum {}
                                                (element :Checksum {}
