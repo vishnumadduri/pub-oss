@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns="http://spdx.org/rdf/terms#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+  <SpdxDocument rdf:about="http://www.spdx.org/tools#SPDXANALYSIS">
+    <specVersion>SPDX-1.0</specVersion>
+    <dataLicense>
+      <License rdf:about="http://spdx.org/licenses/PDDL-1.0">
+        <LicenseId>PDDL-1.0</LicenseId>
+      </License>
+    </dataLicense>
+    <creationInfo>
+      <CreationInfo>
+        <creator>Organization: Harman/Becker Automotive Systems GmbH</creator>
+        <created>2012-03-05T18:48:51Z</created>
+      </CreationInfo>
+    </creationInfo>
+    <describesPackage>
+      <Package rdf:about="http://www.spdx.org/tools#SPDXANALYSIS?package">
+        <name>cairo</name>
+        <versionInfo>1.10.2</versionInfo>
+        <packageFileName>cairo</packageFileName>
+        <downloadLocation>http://cairographics.org</downloadLocation>
+        <packageVerificationCode>
+          <PackageVerificationCode>
+            <packageVerificationCodeValue>0000000000000000000000000000000000000000</packageVerificationCodeValue>
+          </PackageVerificationCode>
+        </packageVerificationCode>
+        <licenseConcluded rdf:resource="http://spdx.org/licenses/LGPL-2.1" />
+        <licenseInfoFromFiles rdf:resource="http://spdx.org/rdf/terms#noassertion" />
+        <licenseDeclared rdf:resource="http://spdx.org/rdf/terms#noassertion" />
+        <copyrightText>Copyright 1999 Tom Tromey&#xD;Copyright 2002, 2003 University of Southern California, Information&#xD;  Sciences Institute  (ISI)&#xD;Copyright 2000, 2002, 2004, 2005 Keith Packard&#xD;Copyright 2004 Calum Robinson&#xD;Copyright 2004 Richard D. Worth&#xD;Copyright 2004, 2005 Red Hat, Inc.&#xD;Copyright 2004 David Reveman</copyrightText>
+        <summary>Cairo is a 2D graphics library with support for multiple output devices. Currently supported output targets include the X Window System, Quartz, Win32, image buffers, PostScript, PDF, and SVG file</summary>
+        <hasFile rdf:nodeID="A0"/>
+      </Package>
+    </describesPackage>
+    <referencesFile>
+      <File rdf:nodeID="A0">
+        <fileName>cairo.tar.bz2</fileName>
+        <fileType>ARCHIVE</fileType>
+        <checksum>
+          <Checksum>
+            <checksumValue>deadbeefdeadbeefdeadbeefdeadbeefdeadbeef</checksumValue>
+            <algorithm>SHA1</algorithm>
+          </Checksum>
+        </checksum>
+        <licenseConcluded rdf:resource="http://spdx.org/rdf/terms#noassertion" />
+        <licenseInfoInFile rdf:resource="http://spdx.org/rdf/terms#noassertion" />
+        <licenseComments>Dummy file entry as source code is not available</licenseComments>
+        <copyrightText rdf:resource="http://spdx.org/rdf/terms#noassertion" />
+      </File>
+    </referencesFile>
+  </SpdxDocument>
+</rdf:RDF>
