@@ -7,7 +7,7 @@
   (:import java.security.MessageDigest))
 
 (defn get-hash [type data]
-(.digest (java.security.MessageDigest/getInstance type) (.getBytes data) ))
+  (.digest (java.security.MessageDigest/getInstance type) data))
 
 (defn sha1-hash [data]
  (get-hash "sha1" data))

@@ -8,7 +8,21 @@
         [utils.gen-utils])
   (:import java.security.MessageDigest))
 
-; (sha1-hex "abc")
+
+(defn- read-binary-file
+  [file]
+  (let [filesize (.length file)
+        buf (byte-array filesize)]
+    (with-open [in-reader (clojure.java.io/input-stream file)]
+      (.read in-reader buf)
+      buf)))
+
+
+(defn- write-binary-file
+  [filename content]
+  (with-open [out-writer (clojure.java.io/output-stream filename)]
+            (.write out-writer content)))
+
 
 (defn read-all-files-within
   "read content of all (source archive) files within
@@ -16,10 +30,11 @@
    sha1 digest and filename."
   [dir]
   (let [files (filter #(.isFile %) (.listFiles dir))]
-    (map #(let [content (slurp %)]
+    (map #(let [content (read-binary-file %)]
             {:filename (.getCanonicalPath %)
              :content content
-             :sha1 (sha1-hex content)}) files)))
+             :sha1 (sha1-hex content)
+             }) files)))
 
 
 (defn write-all-files-within
@@ -28,8 +43,17 @@
   [container target-dir]
   (map #(let [bodyname (last (first (re-seq #"^(.+)/([^/]+)$" (:filename %))))
               content (:content %)]
-          (with-open [out-writer (clojure.java.io/writer (str target-dir "/" bodyname))]
-            (.write out-writer content))) container))
+          (write-binary-file (str target-dir "/" bodyname) content)) container))
+
+
+(defn package-verification-code
+  "calculate pacakge verification code over all files according
+   to algorithm 4.7.4 in SPDX Specification 1.0"
+  [container]
+  (let [c (sort-by :sha1 container)
+        l (map #(format "%s %s\n" (:sha1 %) (:filename %)) c)
+        s (apply str l)]
+    (sha1-hex (.getBytes s))))
 
 
 (defn extract-source-dir-meta-data
@@ -55,6 +79,9 @@
                 container))))
 
 
+
+
+
 (comment
 
   (def y (write-all-files-within x "/tmp"))
@@ -65,7 +92,7 @@
   (def x (read-all-files-within
           (java.io.File. "/mnt/ssd1/ol/lte-workspace2/peikertools/pub_oss/src/pub_oss")))
 
-  (println x)
+  (doall x)
 
 
 
@@ -73,6 +100,8 @@
 
   (def x (read-all-files-within
           (java.io.File. "/mnt/ssd1/ol/lte-workspace2/apps_proc/oe-core/build/tmp-eglibc/deploy/sources/arm-oe-linux-gnueabi/GPLv2/minicaller-1.0-r0/")))
+
+  (dorun (map #(println (:filename %)) x))
 
   (def y (extract-source-dir-meta-data x))
 

@@ -25,8 +25,10 @@
              package-checksum-value
              license-comments
              patch-file-name
-             patch-file-checksum-value
-             ] :as args}]
+             patch-file-checksum-value]
+      :or {creator "SPDX Generator and Source Code Extractor for Open Embedded / Poky, https://github.com/linneman/pub-oss"
+           creation-date (str (new java.util.Date))}
+      :as args}]
   (element :rdf:RDF
            {"xmlns:rdf" "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
             "xmlns" "http://spdx.org/rdf/terms#"
@@ -63,10 +65,10 @@
                                                (element :Checksum {}
                                                         (element :checksumValue {} package-checksum-value)
                                                         (element :algorithm {} "SHA1")))
-                                      (element :licenseConcluded {:rdf:resource "http://spdx.org/rdf/terms#noassertion"})
+                                      (element :licenseConcluded {:rdf:resource licence-concluded})
                                       (element :licenseInfoInFile {:rdf:resource "http://spdx.org/rdf/terms#noassertion"})
                                       (element :licenseComments {} license-comments)
-                                      (element :copyrightText {:rdf:resource "http://spdx.org/rdf/terms#noassertion"}))
+                                      (element :copyrightText {:rdf:resource copyright-text}))
                              (when patch-file-name
                                (element :File {:rdfNodeId "PATCHFILE"}
                                         (element :fileName {} patch-file-name)
