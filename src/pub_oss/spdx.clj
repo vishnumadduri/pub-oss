@@ -27,7 +27,8 @@
              patch-file-name
              patch-file-checksum-value]
       :or {creator "SPDX Generator and Source Code Extractor for Open Embedded / Poky, https://github.com/linneman/pub-oss"
-           creation-date (str (new java.util.Date))}
+           creation-date (str (new java.util.Date))
+           copyright-text "NOASSERTION"}
       :as args}]
   (element :rdf:RDF
            {"xmlns:rdf" "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
