@@ -8,10 +8,21 @@
         [clojure.data.xml])
   )
 
+(defn- simple-date-format [format-str date]
+  (.format (java.text.SimpleDateFormat. format-str) date))
+
+(defn- spdx-date-format
+  "formats java date objects according to SPDX rules"
+  [date]
+  (let [dstr (simple-date-format "yyyy-MM-dd" date)
+        tstr (simple-date-format "HH:mm:ss" date)]
+    (str dstr "T" tstr "Z")))
 
 (defn create-spdx
   "create an spdx xml entety with the given keys:"
-  [& {:keys [creator
+  [& {:keys [creator-org
+             creator-person
+             creator-tool
              creation-date
              package-name
              version-info
@@ -26,8 +37,10 @@
              license-comments
              patch-file-name
              patch-file-checksum-value]
-      :or {creator "SPDX Generator and Source Code Extractor for Open Embedded / Poky, https://github.com/linneman/pub-oss"
-           creation-date (str (new java.util.Date))
+      :or {creator-org "peiker acustic"
+           creator-person "Otto Linnemann"
+           creator-tool "SPDX Generator and Source Code Extractor for Open Embedded / Poky, https://github.com/linneman/pub-oss"
+           creation-date (spdx-date-format (new java.util.Date))
            copyright-text "NOASSERTION"}
       :as args}]
   (element :rdf:RDF
@@ -41,7 +54,9 @@
                                       (element :LicenseId {} "PDDL-1.0")))
                     (element :creationInfo {}
                              (element :CreationInfo {}
-                                      (element :creator {} creator)
+                                      (element :creator {} (str "Organization: " creator-org))
+                                      (element :creator {} (str "Person: " creator-person))
+                                      (element :creator {} (str "Tool: " creator-tool))
                                       (element :created {} creation-date)))
                     (element :describesPackage {}
                              (element :Package {:rdf:about "http://www.spdx.org/tools#SPDXANALYSIS?package"}
@@ -69,15 +84,16 @@
                                       (element :licenseConcluded {:rdf:resource licence-concluded})
                                       (element :licenseInfoInFile {:rdf:resource "http://spdx.org/rdf/terms#noassertion"})
                                       (element :licenseComments {} license-comments)
-                                      (element :copyrightText {:rdf:resource copyright-text}))
-                             (when patch-file-name
-                               (element :File {:rdfNodeId "PATCHFILE"}
+                                      (element :copyrightText {:rdf:resource copyright-text})))
+                    (when patch-file-name
+                      (element :referencesFile {}
+                               (element :File {:rdf:nodeID "PATCHFILE"}
                                         (element :fileName {} patch-file-name)
                                         (element :fileType {} "SOURCE")
                                         (element :checksum {}
-                                               (element :Checksum {}
-                                                        (element :checksumValue {} patch-file-checksum-value)
-                                                        (element :algorithm {} "SHA1")))))))))
+                                                 (element :Checksum {}
+                                                          (element :checksumValue {} patch-file-checksum-value)
+                                                          (element :algorithm {} "SHA1")))))))))
 
 
 

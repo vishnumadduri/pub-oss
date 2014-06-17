@@ -36,7 +36,6 @@
              :package-name package-name
              :licence-concluded (last (first (re-seq #"^(.+)/([^/]+)$" (str dir))))
              :version-info version
-             :creation-date (str (new java.util.Date))
              })
          directories)))
 

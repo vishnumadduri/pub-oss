@@ -19,7 +19,7 @@
   (:gen-class))
 
 
-(swank.swank/start-server :port 4005)
+;(swank.swank/start-server :port 4005)
 
 
 (defn- create-target-directories
