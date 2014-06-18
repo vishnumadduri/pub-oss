@@ -24,3 +24,7 @@
 (defn substring?
   "true when string needle is substring of string hay"
   [hay needle] (>= (.indexOf hay needle) 0))
+
+(defn initstring?
+  "true when string needle is the same as begining of string hay"
+  [hay needle] (== (.indexOf hay needle) 0))

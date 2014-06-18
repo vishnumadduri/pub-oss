@@ -94,7 +94,7 @@
         used-keys (set
                    (mapcat
                     (fn [wkey]
-                      (filter #(substring? % wkey) pack-keys))
+                      (filter #(initstring? % wkey) pack-keys))
                     whitelist))
         reduced-pck-hash (select-keys pck-hash used-keys)]
     (map #(merge {:package-name (key %)} (val %)) reduced-pck-hash)))
