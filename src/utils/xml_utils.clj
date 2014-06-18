@@ -56,6 +56,12 @@
   (with-open [out-writer (clojure.java.io/writer filename)]
     (emit xmldata out-writer)))
 
+(defn write-xml
+  "write the given xmldata to output file."
+  [filename xmldata]
+  (with-open [out-writer (clojure.java.io/writer filename)]
+    (.write out-writer (indent-str xmldata))))
+
 
 (defn xml2clojure
   "Transforms  an  xml  file  to  the  corresponding  clojure.data.xml
