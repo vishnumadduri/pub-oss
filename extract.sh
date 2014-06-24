@@ -11,7 +11,7 @@ WHITELIST="whitelist"
 # These packages come with inconsistent naming which is the reason that
 # they are not assigned to native build packages. Because of licensing
 # issues (GPLv3) we have to exclude them explicitly
-EXLUDE_PACKAGE_REGEXP_LST="bash\|binutils-cross\|binutils\|coreutils\|gdbm\|gmp\|gnutls\|libtasn1"
+EXLUDE_PACKAGE_REGEXP_LST="bash\|binutils-cross\|binutils\|coreutils\|gdbm\|gmp\|gnutls\|libtasn1\|gettext"
 
 GPLv2_SOURCE_DIR=tmp-eglibc/deploy/sources/arm-oe-linux-gnueabi/GPLv2
 
