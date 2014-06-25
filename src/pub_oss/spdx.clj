@@ -50,7 +50,7 @@
          "GPLv3" "GPL-3.0"
          "GPLv3+" "GPL-3.0+"
          "GPLv3+LGPLv2.1+" "GPL-3.0+"
-         "ISCBSD" "ICS"
+         "ISCBSD" "ISC"
          "LGPLv2" "LGPL-2.0"
          "LGPLv2+" "LGPL-2.0+"
          "LGPLv2.0+" "LGPL-2.0+"

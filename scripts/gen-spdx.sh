@@ -1,11 +1,20 @@
 #!/bin/sh
-# generate blacklist (packes which are not part of the image and
+# generate blacklist (packes which are not part of the image) and
 # export SPDX and open source archive for publishing
+#
+# INVOCATION: gen-spdx.sh [image-recipe-name]
 # 2014-06-23 @peiker/ol
 
 # create whitelist
 
-IMAGE="9615-cdp-ltenad"
+# The first argument is name of the image recipe, if not given
+# we use default argument
+IMAGE=$1
+if [ "x$IMAGE" = "x" ]; then
+    IMAGE="9615-cdp-ltenad"
+fi
+
+STANDALONEJAR="target/pub-oss-1.0.0-SNAPSHOT-standalone.jar"
 WHITELIST="whitelist"
 
 # These packages come with inconsistent naming which is the reason that
@@ -40,5 +49,5 @@ fi
 
 # publish source archive files, patches and SPDX containers
 cd $PUBOSSDIR
-java -jar target/pub-oss-1.0.0-SNAPSHOT-standalone.jar --whitelist $WHITELIST
+java -jar $STANDALONEJAR --whitelist $WHITELIST
 

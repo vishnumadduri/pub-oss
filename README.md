@@ -59,6 +59,10 @@ with the following optional arguments:
 * package-blacklist-file file with list of packes not to integrate
 * package-whitelist-file file with list of packes exclusively to integrate
 
+The application can be started with its default setup by simply invoke
+
+    $ scripts/gen-spdx.sh [optional-target-image-name]
+
 ## Licence
 This software stands under the terms of the
 [GNU General Public Licence](http://www.gnu.org/licenses/gpl.html).
