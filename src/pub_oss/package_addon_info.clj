@@ -3,7 +3,8 @@
 ; by Otto Linnemann
 ; (C) 2014, GNU General Public Licence
 
-(ns pub-oss.package-addon-info)
+(ns pub-oss.package-addon-info
+  (:use [utils.gen-utils]))
 
 (def ^{:private true } proj-download-location "http://url-to-be-defined/")
 
@@ -90,7 +91,7 @@ License version 2.1, or the GNU General Public License version 2" :summary "D-Bu
               :copyright-text "GPLv2"
               :summary "This is Linphone, a free (GPL) video softphone based on the SIP protocol."}
    :linux-libc-headers {:download-location "ftp://ftp.kernel.org/pub/linux/kernel/v3.1/linux-3.1.tar.bz2" :copyright-text "GPLv2" :summary "Sanitized set of kernel headers for the C library's use."}
-   :linux-quic-git-f21d9f99c5989e009d532f01231a807068483f07-r3 {:download-location "ftp://ftp.kernel.org" :copyright-text "GPLv2" :summary "QuIC Linux Kernel"}
+   :linux-quic {:download-location "ftp://ftp.kernel.org" :copyright-text "GPLv2" :summary "QuIC Linux Kernel"}
    :lk-git-r3 {:download-location "https://www.codeaurora.org/gitweb/quic/la?p=kernel/lk.git" :copyright-text "MIT" :summary "Little Kernel bootloader"}
    :logrotate {:download-location "https://fedorahosted.org/releases/l/o/logrotate/logrotate-3.7.9.tar.gz" :copyright-text "GPLv2" :summary "Rotates, compresses, removes and mails system log files"}
    :lttng-ust {:download-location "git://git.lttng.org/lttng-ust.git;protocol=git" :copyright-text "LGPLv2.1+ & BSD" :summary "Linux Trace Toolkit Userspace Tracer 2.0"}
@@ -168,7 +169,7 @@ License version 2.1, or the GNU General Public License version 2" :summary "D-Bu
   "provide additional meta information for given
    open source software package"
   [package-name]
-  ((keyword package-name) pkg-add-on-info-data ))
-
+  (let [package-name (if (initstring? package-name "linux-quic") "linux-quic" package-name)]
+    ((keyword package-name) pkg-add-on-info-data )))
 
 
