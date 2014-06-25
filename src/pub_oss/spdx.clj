@@ -148,7 +148,7 @@
                                         (element :licenseConcluded {:rdf:resource licence-concluded})
                                         (element :licenseInfoInFile {:rdf:resource "http://spdx.org/rdf/terms#noassertion"})
                                         (element :licenseComments {} license-comments)
-                                        (element :copyrightText {:rdf:resource copyright-text})))
+                                        (element :copyrightText {} copyright-text)))
                       (when patch-file-name
                         (element :referencesFile {}
                                  (element :File {:rdf:nodeID "PATCHFILE"}

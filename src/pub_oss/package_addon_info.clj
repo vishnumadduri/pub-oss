@@ -17,17 +17,18 @@
    :base-passwd {:download-location "http://git.openembedded.org/openembedded-core" :copyright-text "GPLv2+" :summary "Base system master password/group files."}
    :bash {:download-location "http://git.openembedded.org/openembedded-core" :copyright-text "GPLv3+" :summary "An sh-compatible command language interpreter."}
    :bigreqsproto {:download-location "http://git.openembedded.org/openembedded-core" :copyright-text "MIT-X" :summary "X protocol headers"}
-   :binutils-cross {:download-location "http://git.openembedded.org/openembedded-core" :copyright-text "GPLv3" :summary ""}
+   :binutils-cross {:download-location "http://git.openembedded.org/openembedded-core" :copyright-text "GPLv3" :summary "The Binutils package contains a linker, an assembler, and other tools for handling object files."}
    :binutils {:download-location "http://git.openembedded.org/openembedded-core" :copyright-text "GPLv3" :summary "A GNU collection of binary utilities"}
 
-   :busybox {:download-location "" :copyright-text "" :summary ""}
+   :busybox {:download-location "http://www.busybox.net/downloads/busybox-1.19.3.tar.bz2" :copyright-text "GPLv2" :summary "Tiny versions of many common UNIX utilities in a single small executable."}
    :cairo {:download-location "http://cairographics.org/download"
            :copyright-text "Copyright 1999 Tom Tromey&#xD;Copyright 2002, 2003 University of Southern California, Information&#xD;  Sciences Institute  (ISI)&#xD;Copyright 2000, 2002, 2004, 2005 Keith Packard&#xD;Copyright 2004 Calum Robinson&#xD;Copyright 2004 Richard D. Worth&#xD;Copyright 2004, 2005 Red Hat, Inc.&#xD;Copyright 2004 David Reveman"
            :summary "Cairo is a 2D graphics library with support for multiple output devices. Currently supported output targets include the X Window System, Quartz, Win32, image buffers, PostScript, PDF, and SVG file"}
    :coreutils {:download-location "http://www.gnu.org/software/coreutils" :copyright-text "GPLv3+" :summary "The GNU Core Utilities provide the basic file, shell and text manipulation utilities. These are the core utilities which are expected to exist on every system."}
    :cups {:download-location "ftp://ftp.easysw.com/pub/cups/14/cups-14-source.tar.bz2" :copyright-text "GPLv2 LGPLv2" :summary "An Internet printing system for Unix"}
    :dbus-glib {:download-location "http://www.freedesktop.org/Software/dbus" :copyright-text "AFL-2 | GPLv2+" :summary "High level language (GLib) binding for D-Bus"}
-   :dbus {:download-location "http://dbus.freedesktop.org/releases/dbus/dbus-1.4.16.tar.gz" :copyright-text "" :summary "D-Bus message bus"}
+   :dbus {:download-location "http://dbus.freedesktop.org/releases/dbus/dbus-1.4.16.tar.gz" :copyright-text "Academic Free
+License version 2.1, or the GNU General Public License version 2" :summary "D-Bus message bus"}
    :dnsmasq {:download-location "http://www.thekelleys.org.uk/dnsmasq/dnsmasq-2.55.tar.gz" :copyright-text "GPL" :summary "Dnsmasq is a lightweight, easy to configure DNS forwarder and DHCP server."}
    :e2fsprogs {:download-location "http://e2fsprogs.sourceforge.net" :copyright-text "GPLv2 & LGPLv2 & BSD & MIT" :summary "Ext2 Filesystem Utilities"}
    :eglibc-initial {:download-location "http://www.eglibc.org/home" :copyright-text "GPLv2 & LGPLv2.1" :summary "Embedded GLIBC (GNU C Library)"}
@@ -82,8 +83,8 @@
    :libxinerama {:download-location "http://www.x.org" :copyright-text "MIT" :summary "Xinerama: Xinerama extension library"}
    :libxi {:download-location "http://www.x.org" :copyright-text "MIT & MIT-style" :summary "XI: X Input extension library"}
    :libxml2 {:download-location "ftp://xmlsoft.org/libxml2/libxml2-2.7.8.tar.gz" :copyright-text "MIT" :summary "XML C Parser Library and Toolkit"}
-   :libxrender {:download-location "" :copyright-text "MIT-style" :summary "XRender: X Rendering Extension library"}
-   :libxt {:download-location "http://www.x.org" :copyright-text "" :summary ""}
+   :libxrender {:download-location "git://anongit.freedesktop.org/xorg/lib/libXrender" :copyright-text "MIT-style" :summary "XRender: X Rendering Extension library"}
+   :libxt {:download-location "http://www.x.org" :copyright-text "MIT" :summary "X Toolkit Intrinsics library"}
    :libxtst {:download-location "http://www.x.org" :copyright-text "MIT-style" :summary "XTest: X Test extension library"}
    :linphone {:download-location "http://linphone.org/download"
               :copyright-text "GPLv2"
@@ -108,8 +109,8 @@
    :pixman {:download-location "http://www.x.org" :copyright-text "MIT & MIT-style & PD" :summary "Pixman: Pixel Manipulation library"}
    :popt {:download-location "http://rpm5.org/files/popt/popt-1.16.tar.gz" :copyright-text "MIT" :summary "The popt library for parsing command line options."}
    :readline {:download-location "http://ftp.gnu.org/readline/readline-6.2.tar.gz" :copyright-text "GPLv3+" :summary "The GNU Readline library provides a set of functions for use by applications that allow users to edit command lines as they are typed in. Both Emacs and vi editing modes are available. The Readline library includes additional functions to maintain a list of previously-entered command lines, to recall and perhaps reedit those lines, and perform csh-like history expansion on previous commands."}
-   :recordproto {:download-location "" :copyright-text "MIT-style" :summary "XRecord: X Record extension headers"}
-   :renderproto {:download-location "http://www.x.org" :copyright-text "" :summary ""}
+   :recordproto {:download-location "http://www.x.org" :copyright-text "MIT-style" :summary "XRecord: X Record extension headers"}
+   :renderproto {:download-location "http://www.x.org" :copyright-text "MIT-style" :summary "X.org RenderProto protocol headers."}
    :run-postinsts {:download-location "ftp://ftp.debian.org/debian/pool/main/d/dpkg/dpkg_1.15.8.7.tar.bz2" :copyright-text "GPLv2.0+" :summary "Package maintenance system for Debian."}
    :shared-mime-info {:download-location "http://freedesktop.org/~hadess/shared-mime-info-0.91.tar.xz" :copyright-text "LGPLv2+" :summary "shared MIME database and spec"}
    :sipgateway {:download-location proj-download-location :copyright-text "GPLv2" :summary "A primitive SIP gateway from IP to PSTN"}
