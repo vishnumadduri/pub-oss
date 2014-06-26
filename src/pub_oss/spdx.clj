@@ -34,6 +34,7 @@
          "BSDArtistic" "BSD-2-Clause"
          "BSDGPLv2" "BSD-2-Clause"
          "FreeTypeGPLv2+" "FTL"
+         "GPL" "GPL-2.0"
          "GPL2" "GPL-2.0"
          "GPL-2.0-with-classpath-exception" "GPL-2.0-with-classpath-exception"
          "GPL-2.0-with-GCC-exception" "GPL-2.0-with-GCC-exception"

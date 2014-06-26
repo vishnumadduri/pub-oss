@@ -52,6 +52,7 @@ License version 2.1, or the GNU General Public License version 2" :summary "D-Bu
    :gnumail {:download-location "http://ftp.gnu.org/gnu/classpathx/mail-1.1.2.tar.gz" :copyright-text "GPL-2.0-with-GCC-exception" :summary "GNU's free implementation of the JavaMail API specification"}
    :gnutls {:download-location "ftp://ftp.gnutls.org/pub/gnutls/gnutls-2.12.14.tar.bz2" :copyright-text "GPLv3+ & LGPLv2.1+" :summary "GNU Transport Layer Security Library"}
    :gtk+ {:download-location "http://download.gnome.org/sources/gtk+/2.24/gtk+-2.24.8.tar.bz2" :copyright-text "LGPLv2 & LGPLv2+ & LGPLv2.1+" :summary "Multi-platform toolkit for creating GUIs"}
+   :hostap-git-r3 {:download-location "http://hostap.epitest.fi/releases/hostap-utils-0.2.0.tar.gz" :copyright-text "Copyright (c) 2002-2012, Jouni Malinen <j@w1.fi> and contributors" :summary "wpa_supplicant and hostapd"}
    :inetlib {:download-location "ftp://ftp.gnu.org/gnu/classpath/inetlib-1.1.1.tar.gz" :copyright-text "GPL-2.0-with-GCC-exception" :summary "A Java library of clients for common internet protocols"}
    :initscripts {:download-location "http://git.openembedded.org/openembedded-core" :copyright-text "GPLv2" :summary "SysV init scripts"}
    :inputproto {:download-location "http://www.x.org" :copyright-text "MIT-X" :summary "X protocol headers: 2.0.2"}
