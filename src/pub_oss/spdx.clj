@@ -28,7 +28,7 @@
          "AL2.0" "Apache-2.0"
          "Apache" "Apache-1.0"
          "Apache-2.0" "Apache-2.0"
-         "ArtisticGPL" "Artistic-1.0-Perl"
+         "ArtisticGPL" "Artistic-1.0"
          "BSD" "BSD-2-Clause"
          "BSD-3-Clause" "BSD-3-Clause"
          "BSDArtistic" "BSD-2-Clause"
@@ -136,19 +136,21 @@
                                         (element :licenseDeclared {:rdf:resource "http://spdx.org/rdf/terms#noassertion"})
                                         (element :copyrightText {} copyright-text)
                                         (element :summary {} summary)
-                                        (element :hasFile {:rdf:nodeID "A0"})))
-                      (element :referencesFile {}
-                               (element :File {:rdf:nodeID "A0"}
-                                        (element :fileName {} package-archive-file-name)
-                                        (element :fileType {} "ARCHIVE")
-                                        (element :checksum {}
-                                                 (element :Checksum {}
-                                                          (element :checksumValue {} package-checksum-value)
-                                                          (element :algorithm {} "SHA1")))
-                                        (element :licenseConcluded {:rdf:resource licence-concluded})
-                                        (element :licenseInfoInFile {:rdf:resource "http://spdx.org/rdf/terms#noassertion"})
-                                        (element :licenseComments {} license-comments)
-                                        (element :copyrightText {} copyright-text)))
+                                        (when package-archive-file-name (element :hasFile {:rdf:nodeID "A0"}))
+                                        (when patch-file-name (element :hasFile {:rdf:nodeID "PATCHFILE"}))))
+                      (when package-archive-file-name
+                       (element :referencesFile {}
+                                 (element :File {:rdf:nodeID "A0"}
+                                          (element :fileName {} package-archive-file-name)
+                                          (element :fileType {} "ARCHIVE")
+                                          (element :checksum {}
+                                                   (element :Checksum {}
+                                                            (element :checksumValue {} package-checksum-value)
+                                                            (element :algorithm {} "SHA1")))
+                                          (element :licenseConcluded {:rdf:resource licence-concluded})
+                                          (element :licenseInfoInFile {:rdf:resource "http://spdx.org/rdf/terms#noassertion"})
+                                          (element :licenseComments {} license-comments)
+                                          (element :copyrightText {} copyright-text))))
                       (when patch-file-name
                         (element :referencesFile {}
                                  (element :File {:rdf:nodeID "PATCHFILE"}
@@ -157,7 +159,11 @@
                                           (element :checksum {}
                                                    (element :Checksum {}
                                                             (element :checksumValue {} patch-file-checksum-value)
-                                                            (element :algorithm {} "SHA1"))))))))))
+                                                            (element :algorithm {} "SHA1")))
+                                          (element :licenseConcluded {:rdf:resource licence-concluded})
+                                          (element :licenseInfoInFile {:rdf:resource "http://spdx.org/rdf/terms#noassertion"})
+                                          (element :licenseComments {} license-comments)
+                                          (element :copyrightText {} copyright-text))))))))
 
 
 
