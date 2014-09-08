@@ -40,6 +40,8 @@
          "GPL-2.0-with-GCC-exception" "GPL-2.0-with-GCC-exception"
          "GPL-3+LGPL-2.1+" "GPL-3.0"
          "GPLLGPL" "GPL-1.0"
+         "GPLv1" "GPL-1.0"
+         "GPLv1+" "GPL-1.0+"
          "GPLv2" "GPL-2.0"
          "GPLv2+" "GPL-2.0+"
          "GPLv2LGPLMPLBSD" "GPL-2.0"

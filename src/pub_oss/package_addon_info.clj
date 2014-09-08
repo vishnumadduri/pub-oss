@@ -162,7 +162,8 @@ License version 2.1, or the GNU General Public License version 2" :summary "D-Bu
    :alsa-intf-git-r3 {:download-location "https://www.codeaurora.org/cgit/quic/la/platform/vendor/qcom-opensource/omx/mm-audio" :copyright-text "Apache-2.0" :summary "ALSA Framework Library"}
    :jpeg-8c-r3 {:download-location "http://www.ijg.org/files/jpegsrc.v8c.tar.gz" :copyright-text "BSD-3-Clause" :summary "libjpeg is a library for handling the JPEG (JFIF) image format."}
    :libogg {:download-location "http://downloads.xiph.org/releases/ogg/libogg-1.3.0.tar.gz" :copyright-text "BSD" :summary "Ogg bitstream and framing libary"}
-
+   :watchdog {:download-location "http://sourceforge.net/projects/watchdog/files/watchdog/5.11/watchdog_5.11.tar.gz" :copyright-text "GPLv1+" :summary "Watchdog is a daemon that checks if your system is still working"}
+   :module-init-tools-cross {:download-location "ftp://ftp.kernel.org/pub/linux/utils/kernel/module-init-tools/module-init-tools-3.16.tar.bz2" :copyright-text "GPLv2" :summary "Linux userspace module loading utilities"}
    })
 
 
