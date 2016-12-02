@@ -7,16 +7,12 @@
 ; (C) 2014, GNU General Public Licence
 
 (ns pub-oss.core
-  (:require [swank.swank])
   (:use [pub-oss.spdx]
         [pub-oss.source-dir-utils]
         [pub-oss.file-handling]
         [utils.xml-utils]
         [utils.gen-utils])
   (:gen-class))
-
-
-(swank.swank/start-server :port 4005)
 
 
 (defn- create-target-directories
@@ -91,4 +87,3 @@
         (println start-msg)
         (mainloop oe-main-dir sources-dir pub-dir)
         (System/exit -1)))))
-

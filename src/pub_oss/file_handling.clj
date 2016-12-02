@@ -9,7 +9,7 @@
   (:import java.security.MessageDigest))
 
 
-(defn- read-binary-file
+(defn read-binary-file
   [file]
   (let [filesize (.length file)
         buf (byte-array filesize)]
@@ -18,7 +18,7 @@
       buf)))
 
 
-(defn- write-binary-file
+(defn write-binary-file
   [filename content]
   (with-open [out-writer (clojure.java.io/output-stream filename)]
             (.write out-writer content)))
@@ -106,7 +106,3 @@
   (def y (extract-source-dir-meta-data x))
 
   )
-
-
-
-

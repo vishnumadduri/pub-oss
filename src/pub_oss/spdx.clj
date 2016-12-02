@@ -5,8 +5,9 @@
 
 (ns pub-oss.spdx
   (:use [utils.xml-utils]
-        [clojure.data.xml])
-  )
+        [utils.gen-utils]
+        [clojure.data.xml]))
+
 
 (defn- simple-date-format [format-str date]
   (.format (java.text.SimpleDateFormat. format-str) date))
@@ -24,40 +25,55 @@
   [yocto-license-id]
   (let [yocto2spdx-license-hash
         {
-         "AFL-2GPLv2+" "AFL-2.0"
+         "AFL-2GPLv2+" "GPL-2.0"
+         "AFL-2|GPLv2+" "AFL-2.0"
          "AL2.0" "Apache-2.0"
          "Apache" "Apache-1.0"
          "Apache-2.0" "Apache-2.0"
          "ArtisticGPL" "Artistic-1.0"
+         "Artistic-1.0|GPL-1.0" "Artistic-1.0"
          "BSD" "BSD-2-Clause"
          "BSD-3-Clause" "BSD-3-Clause"
          "BSDArtistic" "BSD-2-Clause"
-         "BSDGPLv2" "BSD-2-Clause"
+         "BSD|Artistic-1.0" "BSD-2-Clause"
+         "BSDGPLv2" "GPL-2.0"
+         "BSDGPLv2+" "GPL-2.0"
+         "BSD|GPLv2" "GPL-2.0"
+         "BSDGPLv2+LGPLv2+PD" "GPL-2.0"
+         "bzip2" "BZIP2"
          "FreeTypeGPLv2+" "FTL"
+         "FreeType|GPLv2+" "FTL"
          "GPL" "GPL-2.0"
          "GPL2" "GPL-2.0"
          "GPL-2.0-with-classpath-exception" "GPL-2.0-with-classpath-exception"
          "GPL-2.0-with-GCC-exception" "GPL-2.0-with-GCC-exception"
+         "GPL-2.0+-with-OpenSSL-exception" "GPL-2.0-with-OpenSSL-exception"
+         "(GPL-2+Elfutils-Exception)" "GPL-2.0-with-Elfutils-Exception"
          "GPL-3+LGPL-2.1+" "GPL-3.0"
          "GPLLGPL" "GPL-1.0"
          "GPLv1" "GPL-1.0"
          "GPLv1+" "GPL-1.0+"
          "GPLv2" "GPL-2.0"
          "GPLv2+" "GPL-2.0+"
+         "GPL-2.0+" "GPL-2.0+"
          "GPLv2LGPLMPLBSD" "GPL-2.0"
          "GPLv2LGPLv2" "GPL-2.0"
+         "GPLv2+LGPLv2+" "GPL-2.0"
          "GPLv2+LGPLv2.1+" "GPL-2.0"
          "GPLv2LGPLv2.1" "GPL-2.0"
          "GPLv2+LGPLv2.1+BSD" "GPL-2.0"
          "GPLv2LGPLv2BSDMIT" "GPL-2.0"
          "GPLv3" "GPL-3.0"
          "GPLv3+" "GPL-3.0+"
-         "GPLv3+LGPLv2.1+" "GPL-3.0+"
+         "GPLv3+LGPLv2.1+" "LGPLv2.1+"
+         "GPLv2GPLv3LGPLv2LGPLv3" "GPLv3"
          "ISCBSD" "ISC"
          "LGPLv2" "LGPL-2.0"
          "LGPLv2+" "LGPL-2.0+"
          "LGPLv2.0+" "LGPL-2.0+"
-         "LGPLv2.1+" "LGPL-2.0+"
+         "LGPLv2.1" "LGPL-2.1+"
+         "LGPLv2.1+" "LGPL-2.1+"
+         "LGPLv2.1only" "LGPL-2.1+"
          "LGPLv2.1+GPLv2+" "LGPL-2.0+"
          "LGPLv2.1GPLv2+" "LGPL-2.0+"
          "LGPLv2+BSDPD" "LGPL-2.0+"
@@ -65,6 +81,8 @@
          "LGPLv2LGPLv2+LGPLv2.1+" "LGPL-2.0+"
          "LGPLv3GPLv3" "LGPL-3.0"
          "Libpng" "Libpng"
+         "ICU" "ICU"
+         "ISC" "ISC"
          "MIT" "MIT"
          "MITMIT-style" "MIT"
          "MITMIT-styleBSD" "MIT"
@@ -72,15 +90,18 @@
          "MIT-style" "MIT"
          "MIT-styleMITPD" "MIT"
          "MIT-X" "MIT"
+         "MITICU" "MIT"
          "MPL-1LGPLv2.1" "MPL-1.0"
          "MPL-2.0" "MPL-2.0"
+         "NewBSD" "BSD-3-Clause"
          "openssl" "OpenSSL"
+         "PD" "PDDL-1.0"
          "Sleepycat" "Sleepycat"
          "Zlib" "Zlib"}
         spdx-lic-tag (yocto2spdx-license-hash yocto-license-id)]
     (if spdx-lic-tag
       (str "http://spdx.org/licenses/" spdx-lic-tag)
-      (do (println "no valid open source license declared for tag " spdx-lic-tag)
+      (do (println-err "no valid open source license declared for tag " spdx-lic-tag)
           "UNSUPPORTED-LICENSE"))))
 
 
