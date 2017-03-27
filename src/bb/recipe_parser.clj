@@ -307,7 +307,8 @@
                         :package-checksum-value (::deployed-file-sha1 v)
                         :licence-concluded license
                         :download-location (first (::src-uri v))
-                        :summary (::description v)))))
+                        :summary (::description v)
+                        :copyright-text (::license v)))))
         recipies-hashes)))
 
 
