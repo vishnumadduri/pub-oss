@@ -15,7 +15,8 @@
         [pub-oss.spdx]
         [utils.xml-utils]
         [bb.gen-html-readme]
-        [clojure.set :only [map-invert]])
+        [clojure.set :only [map-invert]]
+        [clojure.java.shell :only [sh]])
   (:require
    [clojure.string :as str]))
 
@@ -90,6 +91,24 @@
             glb-dirs))))
 
 
+(defn- update-version-information-to-git-description
+  "Several  bitbake  recipes   simply  provide  the  string   'git'  as  version
+  information  which  indicates that  the  version  can  be retrieved  from  git
+  (current HEAD  in default branch). For  proper version information we  use the
+  function git-describe to get the most recent tag for the used version."
+  [bpn version s]
+  (if (= version "git")
+    (let [r (sh "git" "describe" :dir s)]
+      (if (= (:exit r) 0)
+        (.trim (:out r))
+        (do (println-err
+             (format (str "\twarning: could not retrieve git version tag for "
+                          "package %s, git cmd stdout: %s, git cmd stderr: %s")
+                     bpn (:out r) (:err r)))
+            version)))
+    version))
+
+
 (defn- parse-bb-recipe
   "parses bitbake recipe content data
 
@@ -111,7 +130,8 @@
              (keys h-clj-bb))
           h (update-in h [::pr] #(if (empty? %) "r0" (first %)))
           [s] (::s h)
-          s (check-and-correct-source-dir build-dir bb bpn pv (::pr h) s)]
+          s (check-and-correct-source-dir build-dir bb bpn pv (::pr h) s)
+          pv (update-version-information-to-git-description bpn pv s)]
       ;; we do not need extract the sources for all packages
       ;; therefore when we do not find the source folder yet, it is not
       ;; necessarily an error.
@@ -119,6 +139,7 @@
       (-> h
           (update-in [::description] vec2str)
           (update-in [::license] vec2str)
+          (assoc-in [::pv] pv)
           (update-in [::depends] remove-virtual-prefixes)
           (update-in [::rdepends] remove-virtual-prefixes)
           (assoc-in [::s] s)))
@@ -281,7 +302,7 @@
             (write-xml (str dir "/" pn ".spdx")
                        (create-spdx
                         :package-name (::layers/pn v)
-                        :version-info (::layers/pv v)
+                        :version-info (::pv v)
                         :package-archive-file-name (::deployed-file v)
                         :package-checksum-value (::deployed-file-sha1 v)
                         :licence-concluded license
@@ -342,7 +363,7 @@
          (reduce
           (fn [res [k v]]
             (let [package (::layers/pn v)
-                  version (::layers/pv v)
+                  version (::pv v)
                   license (::license v)
                   description (::description v)]
               (str res
