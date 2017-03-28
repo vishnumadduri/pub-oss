@@ -28,7 +28,14 @@
    ::jdk-pn "JDKPN"
    ::inc-pr "INC_PR"
    ::filename-type "FILENAME_TYPE"
-   ::python-majmin "PYTHON_MAJMIN"})
+   ::python-majmin "PYTHON_MAJMIN"
+   ::gnu-mirror "GNU_MIRROR"
+   ::debian-mirror "DEBIAN_MIRROR"
+   ::sourceforge-mirror "SOURCEFORGE_MIRROR"
+   ::xorg-mirror "XORG_MIRROR"
+   ::gnome-mirror "GNOME_MIRROR"
+   ::icedtea-uri "ICEDTEA_URI"
+   ::kernelorg-mirror "KERNELORG_MIRROR"})
 
 ;; reverse association of clojure and bitbake keywords
 (def ^:private h-bb-clj

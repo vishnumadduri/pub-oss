@@ -12,14 +12,23 @@
 ;; make sure they match to your bitbake configuration
 
 (def ^:dynamic *default-config*
-  {:bb.bblayers/tmpdir         "/tmp-eglibc"
-   :bb.bblayers/workdir        "/tmp-eglibc/work/armv7a-vfp-neon-oe-linux-gnueabi"
-   :bb.bblayers/workdir-sys    "/tmp-eglibc/work/mdm9640-oe-linux-gnueabi"
-   :bb.bblayers/deploydir      "/tmp-eglibc/deploy"
-   :bb.bblayers/filename-type  "qti"
-   :bb.bblayers/python-majmin  "2.7"
-   ::deploy-os-dir             "/tmp-eglibc/deploy/open-source/sources"
-   ::deploy-spdx-dir           "/tmp-eglibc/deploy/open-source/spdx"})
+  {:bb.bblayers/tmpdir              "/tmp-eglibc"
+   :bb.bblayers/workdir             "/tmp-eglibc/work/armv7a-vfp-neon-oe-linux-gnueabi"
+   :bb.bblayers/workdir-sys         "/tmp-eglibc/work/mdm9640-oe-linux-gnueabi"
+   :bb.bblayers/deploydir           "/tmp-eglibc/deploy"
+
+   :bb.bblayers/gnu-mirror          "ftp://ftp.gnu.org/gnu"
+   :bb.bblayers/debian-mirror       "ftp://ftp.debian.org/debian/pool"
+   :bb.bblayers/sourceforge-mirror  "http://downloads.sourceforge.net"
+   :bb.bblayers/xorg-mirror         "http://xorg.freedesktop.org/releases"
+   :bb.bblayers/gnome-mirror        "http://ftp.gnome.org/pub/GNOME/sources"
+   :bb.bblayers/icedtea-uri         "http://icedtea.wildebeest.org/download/source"
+   :bb.bblayers/kernelorg-mirror    "http://kernel.org/pub"
+
+   :bb.bblayers/filename-type       "qti"
+   :bb.bblayers/python-majmin       "2.7"
+   ::deploy-os-dir                  "/tmp-eglibc/deploy/open-source/sources"
+   ::deploy-spdx-dir                "/tmp-eglibc/deploy/open-source/spdx"})
 
 
 ;; watch out for preferred providers of your build configuration
